@@ -1,0 +1,22 @@
+body {
+    background-color: darkcyan;
+    font: 20px red sans-serif;
+}
+.btn1 {
+    font: 100px black Cambria;
+    border: 20px white;
+    border-radius: 4px;
+    background-color: #2ff232;
+}
+.btn1:hover {
+    color: white;
+    background-color: black;
+    transition-duration: 0.5s;
+}
+div.a {
+    background-color: silver;
+    padding: 4px;
+    width: fit-content;
+    position: center;
+    margin: auto;
+}
