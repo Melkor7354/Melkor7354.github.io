@@ -131,3 +131,38 @@ button.navigation_left:hover {
 button.navigation_right:hover {
     color: white;
 }
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow-inline: hidden;
+    background-color: black;
+}
+li {
+    float: left;
+    border: 1px solid white;
+    width: 24%;
+    height: max-content;
+    text-decoration: none;
+}
+li a {
+    display: block;
+    background-color: black;
+    color: cyan;
+    text-align: center;
+    vertical-align: center;
+    height: max-content;
+    text-decoration: none;
+    padding: 8px 8px;
+    transition-duration: 1s;
+}
+li a:hover:not(.active) {
+    background-color: rgba(120,120,250,0.94);
+    color: black;
+    font-weight: bold;
+}
+.active {
+    background-color: cyan;
+    color: black;
+    font-weight: bolder;
+}
