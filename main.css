@@ -166,3 +166,15 @@ li a:hover:not(.active) {
     color: black;
     font-weight: bolder;
 }
+button.download {
+    display: block;
+    background-color: black;
+    color: cyan;
+    padding: 5px;
+    text-align: center;
+    vertical-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+}
+
