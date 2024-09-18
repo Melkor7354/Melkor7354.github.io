@@ -2,23 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Melkor7354</title>
-</head>
-<link rel="stylesheet" href="main.css">
-<link rel="script" href="main.js">
-<body>
-<script type="text/javascript" src="main.js">
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Eklavya Raman's Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #000;
+        }
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .button {
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #000;
+        }
+        .auth-form, .blog-form, .gallery-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: auto;
+        }
+        .auth-form input, .blog-form input, .blog-form textarea, .gallery-form input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function authorize() {
+            const password = document.getElementById('password').value;
+            if (password === 'your_password') { // Change 'your_password' to a secure password
+                document.getElementById('auth-section').classList.add('hidden');
+                document.getElementById('content-section').classList.remove('hidden');
+            } else {
+                alert('Incorrect password');
+            }
+        }
 
-<div>
-    <p> First Page </p>
-    <button id='add' class="location" onclick='add_para()'>Click me</button>
+        function addBlog() {
+            const title = document.getElementById('blog-title').value;
+            const content = document.getElementById('blog-content').value;
+            const blogs = JSON.parse(localStorage.getItem('blogs') || '[]');
+            blogs.push({ title, content });
+            localStorage.setItem('blogs', JSON.stringify(blogs));
+            document.getElementById('blog-form').reset();
+            alert('Blog added successfully!');
+        }
+
+        function addImage() {
+            const fileInput = document.getElementById('gallery-image');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const images = JSON.parse(localStorage.getItem('images') || '[]');
+                images.push(e.target.result);
+                localStorage.setItem('images', JSON.stringify(images));
+                alert('Image added successfully!');
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</head>
+<body>
+<header>
+    <h1>Admin - Eklavya Raman's Webpage</h1>
+</header>
+
+<div id="auth-section" class="content">
+    <h3>Authorize to Edit and Upload Blogs</h3>
+    <form class="auth-form" onsubmit="event.preventDefault(); authorize();">
+        <input type="password" id="password" placeholder="Enter password" required>
+        <button type="submit" class="button">Authorize</button>
+    </form>
+</div>
+
+<div id="content-section" class="content hidden">
+    <h2>Add a New Blog</h2>
+    <form id="blog-form" class="blog-form" onsubmit="event.preventDefault(); addBlog();">
+        <input type="text" id="blog-title" placeholder="Blog Title" required>
+        <textarea id="blog-content" rows="5" placeholder="Blog Content" required></textarea>
+        <button type="submit" class="button">Add Blog</button>
+    </form>
+
+    <h2>Add a New Image</h2>
+    <form id="gallery-form" class="gallery-form" onsubmit="event.preventDefault(); addImage();">
+        <input type="file" id="gallery-image" accept="image/*" required>
+        <button type="submit" class="button">Add Image</button>
+    </form>
 </div>
 </body>
-
-
-
 </html>
+
 
 
 
