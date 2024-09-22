@@ -3,119 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Eklavya Raman's Webpage</title>
+    <title>Eklavya Raman</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            color: #000;
+            background-color: #0e0c0c;
+            color: #078fd2;
         }
         header {
             background-color: #000;
-            color: #fff;
+            color: #1e90ff;
             padding: 10px 0;
             text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+        nav a {
+            color: #078fd2;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #000;
+            color: #fff;
+            transition: background-color;
+            transition-duration: initial;
         }
         .content {
             padding: 20px;
         }
-        .button {
-            background-color: #1e90ff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #000;
-        }
-        .auth-form, .blog-form, .gallery-form {
-            display: flex;
-            flex-direction: column;
-            max-width: 300px;
-            margin: auto;
-        }
-        .auth-form input, .blog-form input, .blog-form textarea, .gallery-form input {
-            margin-bottom: 10px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
         .hidden {
             display: none;
         }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            max-width: 100px;
+            margin: 10px;
+            border: 2px solid #1e90ff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+        .modal-content img {
+            width: 100%;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
     <script>
-        function authorize() {
-            const password = document.getElementById('password').value;
-            if (password === 'your_password') { // Change 'your_password' to a secure password
-                document.getElementById('auth-section').classList.add('hidden');
-                document.getElementById('content-section').classList.remove('hidden');
-            } else {
-                alert('Incorrect password');
-            }
+        function showSection(sectionId) {
+            document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
         }
 
-        function addBlog() {
-            const title = document.getElementById('blog-title').value;
-            const content = document.getElementById('blog-content').value;
+        function loadContent() {
+            // Load blogs from localStorage
+            const blogList = document.getElementById('blog-list');
             const blogs = JSON.parse(localStorage.getItem('blogs') || '[]');
-            blogs.push({ title, content });
-            localStorage.setItem('blogs', JSON.stringify(blogs));
-            document.getElementById('blog-form').reset();
-            alert('Blog added successfully!');
+            blogs.forEach(blog => {
+                const newBlog = document.createElement('div');
+                newBlog.innerHTML = `<h3>${blog.title}</h3><p>${blog.content}</p>`;
+                blogList.appendChild(newBlog);
+            });
+
+            // Load images from localStorage
+            const gallery = document.getElementById('gallery');
+            const images = JSON.parse(localStorage.getItem('images') || '[]');
+            images.forEach(src => {
+                const newImage = document.createElement('img');
+                newImage.src = src;
+                newImage.onclick = () => showModal(src);
+                gallery.appendChild(newImage);
+            });
         }
 
-        function addImage() {
-            const fileInput = document.getElementById('gallery-image');
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const images = JSON.parse(localStorage.getItem('images') || '[]');
-                images.push(e.target.result);
-                localStorage.setItem('images', JSON.stringify(images));
-                alert('Image added successfully!');
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
+        function showModal(src) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            modal.style.display = 'block';
+            modalImg.src = src;
         }
+
+        function closeModal() {
+            const modal = document.getElementById('image-modal');
+            modal.style.display = 'none';
+        }
+
+        window.onload = loadContent;
     </script>
 </head>
 <body>
 <header>
-    <h1>Admin - Eklavya Raman's Webpage</h1>
+    <h1>Melkor7354</h1>
 </header>
+<nav>
+    <a href="#" onclick="showSection('home-section')">Home</a>
+    <a href="#" onclick="showSection('about-section')">About Me</a>
+    <a href="#" onclick="showSection('my-projects')">My Projects</a>
+    <a href="#" onclick="showSection('assignments')">Assignments</a>
+</nav>
 
-<div id="auth-section" class="content">
-    <h3>Authorize to Edit and Upload Blogs</h3>
-    <form class="auth-form" onsubmit="event.preventDefault(); authorize();">
-        <input type="password" id="password" placeholder="Enter password" required>
-        <button type="submit" class="button">Authorize</button>
-    </form>
+<div id="home-section" class="content">
+    <h2>Home</h2>
+    <p>Welcome to my personal webpage! I'm Eklavya Raman, a student at IISER Kolkata. I love reading books, playing games (on consoles), playing tennis, watching football etc. Explore my site to know more about me and read my blog.</p>
 </div>
 
-<div id="content-section" class="content hidden">
-    <h2>Add a New Blog</h2>
-    <form id="blog-form" class="blog-form" onsubmit="event.preventDefault(); addBlog();">
-        <input type="text" id="blog-title" placeholder="Blog Title" required>
-        <textarea id="blog-content" rows="5" placeholder="Blog Content" required></textarea>
-        <button type="submit" class="button">Add Blog</button>
-    </form>
+<div id="about-section" class="content hidden">
+    <h2>About Me</h2>
+    <p>Hello! I'm Eklavya Raman. I'm currently a first year undergrad student at IISER Kolkata. When I'm not studying, I enjoy immersing myself in books, engaging in thrilling games on my PS4, and watching football. Feel free to connect with me through my blog.</p>
+</div>
 
-    <h2>Add a New Image</h2>
-    <form id="gallery-form" class="gallery-form" onsubmit="event.preventDefault(); addImage();">
-        <input type="file" id="gallery-image" accept="image/*" required>
-        <button type="submit" class="button">Add Image</button>
-    </form>
+<div id="blog-section" class="content hidden">
+    <h2>Blog</h2>
+    <div id="blog-list">
+        <!-- Blog entries will be added here dynamically -->
+    </div>
+</div>
+
+<div id="gallery-section" class="content hidden">
+    <h2>Gallery</h2>
+    <div id="gallery" class="gallery">
+        <!-- Images will be added here dynamically -->
+    </div>
+</div>
+
+<!-- The Modal -->
+<div id="image-modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modal-image">
+    </div>
 </div>
 </body>
 </html>
-
-
-
-

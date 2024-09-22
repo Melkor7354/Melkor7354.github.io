@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eklavya Raman's Personal Webpage</title>
+    <title>Melkor7354</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            color: #000;
+            background-color: #0e0c0c;
+            color: #078fd2;
         }
         header {
             background-color: #000;
@@ -18,21 +18,25 @@
             padding: 10px 0;
             text-align: center;
         }
+        h1 {
+            font-size: 40px
+        }
         nav {
             display: flex;
             justify-content: center;
-            background-color: #1e90ff;
+            background-color: #ffffff;
         }
         nav a {
-            color: #fff;
+            color: #078fd2;
             padding: 14px 20px;
             text-decoration: none;
             text-align: center;
         }
         nav a:hover {
             background-color: #000;
+            color: #fff;
             transition: background-color;
-            transition-duration: initial;
+            transition-duration: 0.4s;
         }
         .content {
             padding: 20px;
@@ -46,7 +50,7 @@
             justify-content: center;
         }
         .gallery img {
-            max-width: 100px;
+            max-width: 500px;
             margin: 10px;
             border: 2px solid #1e90ff;
             border-radius: 4px;
@@ -80,65 +84,120 @@
             color: #fff;
             font-size: 40px;
             font-weight: bold;
-            cursor: pointer;
+            cursor: pointer
+        }
+        .column {
+            float: left;
+            width: 25%;
+        }
+        .column2 {
+            float: left;
+            width: 25%;
+            color: #0e0c0c;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: flex;
+            clear: both;
+            align-content: center;
+        }
+        h2 {
+            text-align: center;
+            font-size: 30px;
+        }
+        .card {
+            box-shadow: 0 20px 20px 0 rgba(50,50,50,0.2);
+            transition: 0.3s;
+            width: 25%;
+        }
+
+        .card:hover {
+            box-shadow: 0 25px 25px 0 rgba(50,50,50,0.2);
+            width: 28%;
+        }
+
+        .container {
+            padding: 2px 16px;
         }
     </style>
     <script>
-        function showSection(sectionId) {
+        function showSection(sectionId, navId) {
             document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
             document.getElementById(sectionId).classList.remove('hidden');
+            document.querySelectorAll("nav a").forEach(nav => nav.style.backgroundColor = "#fff");
+            document.querySelectorAll("nav a").forEach(nav => nav.style.color = "#078fd2");
+            document.getElementById(navId).style.color = '#fff';
+            document.getElementById(navId).style.backgroundColor = "#000";
+
         }
-
-        function loadContent() {
-            // Load blogs from localStorage
-            const blogList = document.getElementById('blog-list');
-            const blogs = JSON.parse(localStorage.getItem('blogs') || '[]');
-            blogs.forEach(blog => {
-                const newBlog = document.createElement('div');
-                newBlog.innerHTML = `<h3>${blog.title}</h3><p>${blog.content}</p>`;
-                blogList.appendChild(newBlog);
-            });
-
-            // Load images from localStorage
-            const gallery = document.getElementById('gallery');
-            const images = JSON.parse(localStorage.getItem('images') || '[]');
-            images.forEach(src => {
-                const newImage = document.createElement('img');
-                newImage.src = src;
-                newImage.onclick = () => showModal(src);
-                gallery.appendChild(newImage);
-            });
-        }
-
-        function showModal(src) {
-            const modal = document.getElementById('image-modal');
-            const modalImg = document.getElementById('modal-image');
-            modal.style.display = 'block';
-            modalImg.src = src;
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('image-modal');
-            modal.style.display = 'none';
-        }
-
-        window.onload = loadContent;
+        window.onload = showSection('home-section', 'home');
     </script>
 </head>
 <body>
 <header>
-    <h1>Welcome to Eklavya Raman's Personal Webpage</h1>
+    <h1>Êl síla erin lû e-govaned vîn!</h1>
 </header>
 <nav>
-    <a href="#" onclick="showSection('home-section')">Home</a>
-    <a href="#" onclick="showSection('about-section')">About Me</a>
-    <a href="#" onclick="showSection('blog-section')">Blog</a>
-    <a href="#" onclick="showSection('gallery-section')">Gallery</a>
-    <a href="admin.html">Admin</a>
+    <a id="home" href="#" onclick="showSection('home-section', 'home')" style="background-color: black; color: white;">Home</a>
+    <a id="about" href="#" onclick="showSection('about-section', 'about')">About Me</a>
+    <a id="projects" href="#" onclick="showSection('my-projects', 'projects')">My Projects</a>
+    <a id="my-assignments" href="#" onclick="showSection('assignments', 'my-assignments')">Assignments</a>
 </nav>
 
 <div id="home-section" class="content">
     <h2>Home</h2>
+    <div class="row">
+        <div class="column2">
+            placeholder text
+        </div>
+        <div class="column">
+            máno kiluvando ninqe lutya kirya wilwarindon <br>
+            laivarisse lúnelinqe talalínen tinwelindon? <br>
+            vean san falastuváre alkalótefalmarínen <br>
+            ar i·kiryo kaluváre talain kulukalmalínen<br>
+            ar i·súru laustuváro lintataurelasselindon<br>
+            ondoin mórin ninkuváron, núni silmerána tindon<br>
+            kaivon nyúken i·sapsanta silmerána númetár<br>
+            ísimandulómi anta móri rauqi n·Ambalár<br>
+            taitelúmen san tollanta ranka naiko lunganár<br>
+            ma kaire laiqen ondolissen kirya maita?<br>
+            karnevaite úri kilivande hísen nie nie nienaite<br>
+            ailinissen oilimaisen<br>
+            ala hui oilimaite<br>
+            ala hui oilimaite²<br>
+            alkarissen oilimain²<br>
+            ala hui oilimaite³<br>
+            ailinissen alkarain<br>
+        </div>
+        <div class="column">
+            “who shall see a white ship sailing like a butterfly<br>
+            in the blue-flowing sea with sails like stars?<br>
+            the sea then will surge with waves like shining blossoms<br>
+            and the sails of the ship will shine with golden lights<br>
+            and the wind will roar like many forest leaves<br>
+            the dark rocks will shine white, shining under the gleaming-moon<br>
+            the gleaming-moon goes down like a corpse into the grave<br>
+            the black mist-clouds of hell come rushing from the East<br>
+            the firmament then leans sickly on broken hill[s]<br>
+            does a ship lie maimed on green rocks?<br>
+            red-skied the sun will gaze through a haze of tears<br>
+            on the last shores<br>
+            before the last night<br>
+            before the last night<br>
+            in the last rays of light<br>
+            before the last night<br>
+            upon the shining shore"<br>
+        </div>
+        <div class="column2">
+            Placeholder text
+        </div>
+
+    </div>
+
+
+
+
     <p>Welcome to my personal webpage! I'm Eklavya Raman, a student at IISER Kolkata. I love reading books, playing games (on consoles), playing tennis, watching football etc. Explore my site to know more about me and read my blog.</p>
 </div>
 
@@ -160,13 +219,17 @@
         <!-- Images will be added here dynamically -->
     </div>
 </div>
-
-<!-- The Modal -->
-<div id="image-modal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <div class="modal-content">
-        <img id="modal-image">
+<div id="my-projects" class="content hidden">
+    <div class="card">
+        <img src="icon_image.png" alt="Avatar" style="width:100%">
+        <div class="container">
+            <h4><b>John Doe</b></h4>
+            <p>Architect & Engineer</p>
+        </div>
     </div>
+</div>
+<div id="assignments" class="content hidden">
+
 </div>
 </body>
 </html>
