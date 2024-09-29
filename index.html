@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Melkor7354</title>
+    <link rel="icon" href="images/icon.png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -106,6 +107,9 @@
             text-align: center;
             font-size: 30px;
         }
+        .card_container {
+            display: flex
+        }
         .card {
             box-shadow: 0 20px 20px 0 rgba(50,50,50,0.2);
             transition: 0.3s;
@@ -119,6 +123,19 @@
 
         .container {
             padding: 2px 16px;
+        }
+        .info {
+            padding: 2px 2px;
+            background-color: #078fd2;
+            color: black;
+            box-shadow: 0 5px 5px 0 rgba(50,50,50,0.2);;
+            border-radius: 2cm;
+            text-align: center;
+            width: 30%
+        }
+        .info:hover {
+            transform: scale(1.15);
+            transition-duration: 1.4s;
         }
     </style>
     <script>
@@ -220,11 +237,26 @@
     </div>
 </div>
 <div id="my-projects" class="content hidden">
-    <div class="card">
-        <img src="icon_image.png" alt="Avatar" style="width:100%">
-        <div class="container">
-            <h4><b>John Doe</b></h4>
-            <p>Architect & Engineer</p>
+    <div class="card_container">
+        <div class="card">
+            <img src="images/icon_image.png" alt="Avatar" style="width:100%">
+            <div class="container">
+                <h4><b>John Doe</b></h4>
+                <p>Architect & Engineer</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="images/album_exchanger.png" alt="Album Exchanger" style="width:100%">
+            <div class="container">
+                <h4><b>Album Exchanger bot</b></h4>
+                <p>This is a discord bot made using the discord api on python. It automates a fun event,
+                    the album exchange for a discord metal server.</p>
+                <a href="https://github.com/Melkor7354/AlbumExchangerBot">
+                   <button class="info">
+                       Source code
+                   </button>
+                </a>
+            </div>
         </div>
     </div>
 </div>
