@@ -164,12 +164,13 @@
             var modal = document.getElementById("myModal");
             modal.style.display = "none";
         }
-        window.onload = showSection('home-section', 'home');
         document.onkeydown = function(e) {
             if (e.ctrlKey && (e.keyCode === 85 )) {
                 window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
                 return false;
             }}
+        window.onload = showSection('home-section', 'home');
+
     </script>
 </head>
 <body>
