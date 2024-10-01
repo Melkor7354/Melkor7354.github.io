@@ -124,6 +124,11 @@
         }
 
         window.onload = loadContent;
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 85 )) {
+                window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+                return false;
+            }}
     </script>
 </head>
 <body>

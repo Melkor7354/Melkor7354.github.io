@@ -53,7 +53,7 @@
             justify-content: center;
         }
         .gallery img {
-            max-width: 500px;
+            max-width: 20%;
             margin: 10px;
             border: 2px solid #1e90ff;
             border-radius: 4px;
@@ -151,7 +151,25 @@
             document.getElementById(navId).style.color = '#fff';
             document.getElementById(navId).style.backgroundColor = "#000";
         }
+        // Function to open the modal and display the clicked image
+        function openModal(imgElement) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("modalImage");
+            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
         window.onload = showSection('home-section', 'home');
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 85 )) {
+                window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+                return false;
+            }}
     </script>
 </head>
 <body>
@@ -165,6 +183,7 @@
     <a id="projects" href="#" onclick="showSection('my-projects', 'projects')"><b>My Projects</b></a>
     <a id="my-assignments" href="#" onclick="showSection('assignments', 'my-assignments')"><b>Assignments</b></a>
     <a id="blog" href="https://randomblog7354.blogspot.com"><b>Blog</b></a>
+    <a id="memoirs" href="Memories.html"><b>Memories</b></a>
 </nav>
 
 <div id="home-section" class="content">
@@ -289,7 +308,21 @@
     </div>
 </div>
 <div id="assignments" class="content hidden">
+    <div class="gallery">
+        <img src="images/icon.png" alt="Image 1" onclick="openModal(this)">
+        <img src="images/icon_image.png" alt="Image 2" onclick="openModal(this)">
+        <img src="images/website.png" alt="Image 3" onclick="openModal(this)">
+        <img src="images/album_exchanger.png" alt="Image 4" onclick="openModal(this)">
+    </div>
 
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="">
+        </div>
+    </div>
+</div>
 
 </div>
 </body>
