@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melkor7354</title>
+  <link rel="icon" href="images/icon.png">
+  <style>
+    <style>
+    * {
+      box-sizing: border-box; /* Better sizing control */
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Courier New', Courier, monospace; /* Font family */
+      background-color: #0e0c0c; /* Background color */
+      color: #078fd2; /* Text color */
+    }
+    header {
+      background-color: #000; /* Header background */
+      color: #fff; /* Header text color */
+      padding: 15px; /* Header padding */
+      text-align: center; /* Centered text */
+    }
+    h1 {
+      font-size: 2.5em; /* Responsive heading size */
+      margin-bottom: 10px; /* Margin for spacing */
+    }
+    nav {
+      display: flex; /* Flexbox for navigation */
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      justify-content: center; /* Center navigation items */
+      background-color: #ffffff; /* Navigation background */
+      padding: 10px 0; /* Padding */
+    }
+    nav a {
+      color: #078fd2; /* Link color */
+      padding: 10px 15px; /* Link padding */
+      text-decoration: none; /* Remove underline */
+      text-align: center; /* Centered text */
+      margin: 5px; /* Margin for spacing */
+      flex: 1; /* Equal space for each link */
+      min-width: 100px; /* Minimum width */
+      transition: background-color 0.3s; /* Transition for hover effect */
+    }
+    nav a:hover {
+      background-color: #000; /* Background on hover */
+      color: #fff; /* Text color on hover */
+    }
+    .content {
+      padding: 20px; /* Content padding */
+    }
+    .hidden {
+      display: none; /* Hidden class */
+    }
+    .gallery {
+      display: flex; /* Flexbox for gallery */
+      flex-wrap: wrap; /* Wrap images */
+      justify-content: center; /* Center images */
+      margin-top: 10px; /* Margin */
+    }
+    .gallery img {
+      width: 45%; /* Responsive image width */
+      max-width: 200px; /* Max width for images */
+      margin: 10px; /* Margin for spacing */
+      border: 2px solid #1e90ff; /* Border color */
+      border-radius: 4px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor */
+    }
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Fixed position */
+      z-index: 1; /* Layer order */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Scroll if needed */
+      background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+    }
+    .modal-content {
+      margin: auto; /* Center modal */
+      display: block; /* Block display */
+      width: 80%; /* Width of modal */
+      max-width: 700px; /* Max width of modal */
+    }
+    .close {
+      position: absolute; /* Absolute positioning */
+      top: 15px; /* Position from top */
+      right: 35px; /* Position from right */
+      color: #fff; /* Close button color */
+      font-size: 40px; /* Font size */
+      font-weight: bold; /* Bold font */
+      cursor: pointer; /* Pointer cursor */
+    }
+    .card_container {
+      display: flex; /* Flexbox for card container */
+      flex-wrap: wrap; /* Wrap cards */
+      justify-content: center; /* Center cards */
+      margin: 20px 0; /* Margin */
+    }
+    .card {
+      box-shadow: 0 20px 20px rgba(50, 50, 50, 0.2); /* Shadow effect */
+      transition: transform 0.3s; /* Transition for hover effect */
+      border: 5px solid white; /* Border */
+      width: calc(25% - 20px); /* Responsive width for larger screens */
+      margin: 10px; /* Margin */
+      border-radius: 4px; /* Rounded corners */
+    }
+    .card:hover {
+      transform: scale(1.05); /* Scale on hover */
+    }
+    .container {
+      padding: 10px; /* Padding */
+    }
+    .info {
+      padding: 10px; /* Padding */
+      background-color: #078fd2; /* Background color */
+      color: black; /* Text color */
+      box-shadow: 0 5px 5px rgba(50, 50, 50, 0.2); /* Shadow effect */
+      text-align: center; /* Centered text */
+      width: 100%; /* Full width */
+      border: none; /* No border */
+      cursor: pointer; /* Pointer cursor */
+    }
+    .info:hover {
+      transform: scale(1.1); /* Scale on hover */
+      transition: transform 0.3s; /* Transition */
+    }
+    /* Media Queries for Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em; /* Smaller heading size */
+      }
+      nav a {
+        padding: 8px; /* Smaller padding */
+        font-size: 0.9em; /* Smaller font size */
+      }
+      .gallery img {
+        width: 45%; /* Adjust gallery image size */
+        max-width: none; /* Remove max width */
+      }
+      .card {
+        width: calc(50% - 20px); /* Adjust card size */
+      }
+      h2 {
+        font-size: 1.8em; /* Smaller subheading size */
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em; /* Even smaller heading size */
+      }
+      nav a {
+        padding: 5px; /* Smaller padding for very small screens */
+        font-size: 0.8em; /* Smaller font size */
+      }
+      .gallery img {
+        width: 90%; /* Adjust gallery image size for small screens */
+      }
+      .card {
+        width: 90%; /* Full width cards on small screens */
+      }
+      h2 {
+        font-size: 1.5em; /* Smaller subheading size */
+      }
+    }
+  </style>
+
+  <script>
+    function showSection(sectionId, navId) {
+      document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
+      document.getElementById(sectionId).classList.remove('hidden');
+      document.querySelectorAll("nav a").forEach(nav => nav.style.backgroundColor = "#fff");
+      document.querySelectorAll("nav a").forEach(nav => nav.style.color = "#078fd2");
+      document.getElementById(navId).style.color = '#fff';
+      document.getElementById(navId).style.backgroundColor = "#000";
+    }
+    // Function to open the modal and display the clicked image
+    function openModal(imgElement) {
+      var modal = document.getElementById("myModal");
+      var modalImg = document.getElementById("modalImage");
+      modal.style.display = "block";
+      modalImg.src = imgElement.src;
+    }
+
+    // Function to close the modal
+    function closeModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+    document.onkeydown = function(e) {
+      if (e.ctrlKey && (e.keyCode === 85 )) {
+        window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
+        return false;
+      }
+    }
+    window.onload = showSection('home-section', 'home');
+
+  </script>
+</head>
+<body>
+<header>
+  <h1>Êl síla erin lû e-govaned vîn!</h1>
+  <p>desktop only</p>
+</header>
+<nav>
+  <a id="home" href="#" onclick="showSection('home-section', 'home')" style="background-color: black; color: white;"><b>Home</b></a>
+  <a id="about" href="#" onclick="showSection('about-section', 'about')"><b>About Me</b></a>
+  <a id="projects" href="#" onclick="showSection('my-projects', 'projects')"><b>My Projects</b></a>
+  <a id="my-assignments" href="#" onclick="showSection('assignments', 'my-assignments')"><b>Assignments</b></a>
+  <a id="blog" href="https://randomblog7354.blogspot.com"><b>Blog</b></a>
+  <a id="memoirs" href="Memories.html"><b>Memories</b></a>
+</nav>
+
+<div id="home-section" class="content">
+  <h2>Home</h2>
+  <div class="row">
+    <div class="column2">
+      placeholder text
+    </div>
+    <div class="column">
+      máno kiluvando ninqe lutya kirya wilwarindon <br>
+      laivarisse lúnelinqe talalínen tinwelindon? <br>
+      vean san falastuváre alkalótefalmarínen <br>
+      ar i·kiryo kaluváre talain kulukalmalínen<br>
+      ar i·súru laustuváro lintataurelasselindon<br>
+      ondoin mórin ninkuváron, núni silmerána tindon<br>
+      kaivon nyúken i·sapsanta silmerána númetár<br>
+      ísimandulómi anta móri rauqi n·Ambalár<br>
+      taitelúmen san tollanta ranka naiko lunganár<br>
+      ma kaire laiqen ondolissen kirya maita?<br>
+      karnevaite úri kilivande hísen nie nie nienaite<br>
+      ailinissen oilimaisen<br>
+      ala hui oilimaite<br>
+      ala hui oilimaite²<br>
+      alkarissen oilimain²<br>
+      ala hui oilimaite³<br>
+      ailinissen alkarain<br>
+    </div>
+    <div class="column">
+      “who shall see a white ship sailing like a butterfly<br>
+      in the blue-flowing sea with sails like stars?<br>
+      And it shall bring me to my home, where peace<br>
+      and joy fill the hearts of the people.<br>
+      I will build my house on the hills, and the fields<br>
+      will bring forth fruits in abundance.”<br>
+      — D. D. Elfanúlin
+    </div>
+  </div>
+</div>
+
+<div id="about-section" class="hidden content">
+  <h2>About Me</h2>
+  <p>This is a brief description of myself. Here you can include your hobbies, interests, and anything else you'd like to share.</p>
+</div>
+
+<div id="my-projects" class="hidden content">
+  <h2>My Projects</h2>
+  <div class="gallery">
+    <img src="images/img1.jpg" onclick="openModal(this)" alt="Project 1">
+    <img src="images/img2.jpg" onclick="openModal(this)" alt="Project 2">
+    <img src="images/img3.jpg" onclick="openModal(this)" alt="Project 3">
+    <img src="images/img4.jpg" onclick="openModal(this)" alt="Project 4">
+    <img src="images/img5.jpg" onclick="openModal(this)" alt="Project 5">
+    <img src="images/img6.jpg" onclick="openModal(this)" alt="Project 6">
+  </div>
+</div>
+
+<div id="assignments" class="hidden content">
+  <h2>Assignments</h2>
+  <p>List of your assignments or any important tasks you'd like to remember.</p>
+</div>
+
+<!-- Modal for displaying images -->
+<div id="myModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImage" alt="Modal Image">
+</div>
+
+</body>
+</html>
