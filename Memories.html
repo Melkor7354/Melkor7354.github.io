@@ -135,12 +135,26 @@
             color: black;
             box-shadow: 0 5px 5px 0 rgba(50,50,50,0.2);;
             text-align: center;
-            width: 30%
+            width: 10%;
+            height: 25px;
         }
         .info:hover {
             transform: scale(1.15);
             transition-duration: 1.4s;
         }
+        .pass {
+            width: 50%;
+            margin: auto;
+            height: 25px;
+            color: #078fd2;
+            background-color: whitesmoke;
+        }
+        input {
+            text-emphasis: #078fd2;
+            text-align: center;
+            font-size: 20px;
+        }
+
     </style>
     <script>
         function showSection(sectionId, navId) {
@@ -151,12 +165,26 @@
             document.getElementById(navId).style.color = '#fff';
             document.getElementById(navId).style.backgroundColor = "#000";
         }
+        function showMemories() {
+            document.getElementById("key").classList.add("hidden")
+            document.getElementById("memories").classList.remove('hidden');
+        }
         // Function to open the modal and display the clicked image
         function openModal(imgElement) {
             var modal = document.getElementById("myModal");
             var modalImg = document.getElementById("modalImage");
             modal.style.display = "block";
             modalImg.src = imgElement.src;
+        }
+        function key_to_my_soul() {
+            const pass = document.getElementById('pass').value;
+            if (pass === "Sjel Av Natten") {
+                showMemories()
+            }
+            else {
+                document.getElementById('pass_form').reset()
+                alert("Wrong key.")
+            }
         }
 
         // Function to close the modal
@@ -169,6 +197,20 @@
                 window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
                 return false;
             }}
+        fetch('memories.json')
+            .then(response => response.json())
+            .then(data => {
+                const gallery = document.getElementById('gallery');
+
+                // Iterate over each image and add to the gallery
+                data.images.forEach((imgSrc, index) => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imgSrc;
+                    imgElement.alt = `Image ${index + 1}`;
+                    imgElement.onclick = () => openModal(imgElement);
+                    gallery.appendChild(imgElement);
+                });
+            });
     </script>
 </head>
 <body>
@@ -184,6 +226,26 @@
     <a id="blog" href="https://randomblog7354.blogspot.com"><b>Blog</b></a>
     <a id="memoirs" href="Memories.html"><b>Memories</b></a>
 </nav>
-<p>This is the place where I will store my memories. You can only pass if you are a friend. </p>
+<div class="content" id="key">
+    <p>This is the place where I will store my memories. You can only pass if you are a friend. </p>
+    <center>
+        <form id="pass_form">
+            <label for="pass"><b>What is the key?</b></label><br>
+            <input type="text" id="pass" class="pass"><br><br>
+            <button type="button" class="info" onclick="key_to_my_soul()">Submit</button>
+        </form>
+    </center>
+</div>
+<div class="content hidden" id="memories">
+    <p>Here is the vault of my memories.</p>
+    <div class="gallery" id="gallery">
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="">
+        </div>
+    </div>
+</div>
 </body>
 </html>
