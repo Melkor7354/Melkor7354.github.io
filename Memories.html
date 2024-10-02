@@ -156,62 +156,8 @@
         }
 
     </style>
-    <script>
-        function showSection(sectionId, navId) {
-            document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
-            document.getElementById(sectionId).classList.remove('hidden');
-            document.querySelectorAll("nav a").forEach(nav => nav.style.backgroundColor = "#fff");
-            document.querySelectorAll("nav a").forEach(nav => nav.style.color = "#078fd2");
-            document.getElementById(navId).style.color = '#fff';
-            document.getElementById(navId).style.backgroundColor = "#000";
-        }
-        function showMemories() {
-            document.getElementById("key").classList.add("hidden")
-            document.getElementById("memories").classList.remove('hidden');
-        }
-        // Function to open the modal and display the clicked image
-        function openModal(imgElement) {
-            var modal = document.getElementById("myModal");
-            var modalImg = document.getElementById("modalImage");
-            modal.style.display = "block";
-            modalImg.src = imgElement.src;
-        }
-        function key_to_my_soul(){(function(){function _0x5f0d(_0x4e4e68,_0x349be6){var _0x45938a=["getElementById","value","Sjel\x20Av\x20Natten","reset","alert"];return _0x45938a[_0x4e4e68-0x120];}const _0x4e4e68=document[_0x5f0d(0x120)]('pass')[_0x5f0d(0x121)];if(_0x4e4e68===_0x5f0d(0x122)){showMemories();}else{document[_0x5f0d(0x120)]('pass_form')[_0x5f0d(0x123)]();window[_0x5f0d(0x124)]("Wrong key.");}})();}
+    <script>function showSection(sectionId,navId){document.querySelectorAll('.content').forEach(section=>section.classList.add('hidden'));document.getElementById(sectionId).classList.remove('hidden');document.querySelectorAll("nav a").forEach(nav=>nav.style.backgroundColor="#fff");document.querySelectorAll("nav a").forEach(nav=>nav.style.color="#078fd2");document.getElementById(navId).style.color='#fff';document.getElementById(navId).style.backgroundColor="#000";}function showMemories(){document.getElementById("key").classList.add("hidden");document.getElementById("memories").classList.remove('hidden');}function openModal(imgElement){var modal=document.getElementById("myModal");var modalImg=document.getElementById("modalImage");modal.style.display="block";modalImg.src=imgElement.src;}function key_to_my_soul(){(function(){function _0x5f0d(_0x4e4e68,_0x349be6){var _0x45938a=["getElementById","value","Sjel\x20Av\x20Natten","reset","alert"];return _0x45938a[_0x4e4e68-0x120];}const _0x4e4e68=document[_0x5f0d(0x120)]('pass')[_0x5f0d(0x121)];if(_0x4e4e68===_0x5f0d(0x122)){showMemories();}else{document[_0x5f0d(0x120)]('pass_form')[_0x5f0d(0x123)]();window[_0x5f0d(0x124)]("Wrong key.");}})();}function closeModal(){var modal=document.getElementById("myModal");modal.style.display="none";}document.onkeydown=function(e){if(e.ctrlKey&&(e.keyCode===85)){window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";return false;}};var message="You will not see my source code.";function rtclickcheck(keyp){if(navigator.appName=="Netscape"&&keyp.which==3){alert(message);return false;}if(navigator.appVersion.indexOf("MSIE")!=-1&&event.button==2){alert(message);return false;}}document.onmousedown=rtclickcheck;fetch('memories.json').then(response=>response.json()).then(data=>{const gallery=document.getElementById('gallery');data.images.forEach((imgSrc,index)=>{const imgElement=document.createElement('img');imgElement.src=imgSrc;imgElement.alt=`Image ${index+1}`;imgElement.onclick=()=>openModal(imgElement);gallery.appendChild(imgElement);});});</script>
 
-
-
-        // Function to close the modal
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
-        document.onkeydown = function(e) {
-            if (e.ctrlKey && (e.keyCode === 85 )) {
-                window.location="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
-                return false;
-            }}
-        var message = "You will not see my source code.";
-
-        function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3){ alert(message); return false; }
-
-            if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; } }
-
-        document.onmousedown = rtclickcheck;
-        fetch('memories.json')
-            .then(response => response.json())
-            .then(data => {
-                const gallery = document.getElementById('gallery');
-
-                // Iterate over each image and add to the gallery
-                data.images.forEach((imgSrc, index) => {
-                    const imgElement = document.createElement('img');
-                    imgElement.src = imgSrc;
-                    imgElement.alt = `Image ${index + 1}`;
-                    imgElement.onclick = () => openModal(imgElement);
-                    gallery.appendChild(imgElement);
-                });
-            });
-    </script>
 </head>
 <body>
 <header>
